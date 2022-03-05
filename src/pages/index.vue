@@ -17,7 +17,7 @@ const { isAuthenticated, user } = userAuth();
   >
     <h2
       v-if="!isAuthenticated"
-      class="text-6xl tracking-tighter font-bold text-purple-900 font-serif"
+      class="text-6xl tracking-tighter font-bold text-yellow-900 font-serif"
     >
       <p>Welcome</p>
       <hr />
@@ -26,7 +26,7 @@ const { isAuthenticated, user } = userAuth();
 
     <h2
       v-else
-      class="text-6xl tracking-tighter font-bold text-purple-900 font-sans"
+      class="text-6xl tracking-tighter font-bold text-yellow-900 font-sans"
     >
       <h2 class="justify-center">
         <p>Welcome {{ user }}</p>
