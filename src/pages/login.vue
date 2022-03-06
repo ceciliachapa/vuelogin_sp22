@@ -3,12 +3,14 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import useAuth from "../composable/useAuth";
 import useError from "../composable/useError";
+import { useTimeout, promiseTimeout } from "@vueuse/core";
+
 const { isAuthenticated, login } = useAuth();
 const username = ref("");
 const password = ref("");
 const router = useRouter();
-const logginIn = () => {
-  login(username.value, password.value);
+const logginIn = async () => {
+  await login(username.value, password.value);
   if (isAuthenticated.value) {
     router.push("/");
   } else {
@@ -17,7 +19,7 @@ const logginIn = () => {
   }
 };
 const { error, setError } = useError();
-import { useTimeout, promiseTimeout } from "@vueuse/core";
+
 const { ready, start } = useTimeout(3000, { controls: true });
 </script>
 
@@ -31,7 +33,6 @@ const { ready, start } = useTimeout(3000, { controls: true });
       min-h-screen-nonav
     "
   >
-    Logged in: {{ isAuthenticated }}
     <div
       class="
         flex
