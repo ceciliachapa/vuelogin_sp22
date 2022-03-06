@@ -4,10 +4,21 @@ import { useRouter } from "vue-router";
 import useAuth from "../composable/useAuth";
 import useError from "../composable/useError";
 import { useTimeout, promiseTimeout } from "@vueuse/core";
+import { useForm, useField } from "vee-validate";
+import * as yup from "yup";
+
+const schema = yup.object({
+  username: yup.string().required().email().label("Email"),
+  password: yup.string().required().min(6).label("Password"),
+});
+useForm({
+  validationSchema: schema,
+});
+const { value: username, errorMessage: emailError } = useField("username");
+const { value: password, errorMessage: passwordError } = useField("password");
 
 const { isAuthenticated, login, signup, googleLogin } = useAuth();
-const username = ref("");
-const password = ref("");
+
 const router = useRouter();
 
 const logginIn = async () => {
@@ -59,17 +70,23 @@ const { ready, start } = useTimeout(3000, { controls: true });
       <img class="h-64" src="../assets/login.png" alt="Hello BG" />
       <form @submit.prevent="logginIn" class="flex flex-col p-4 space-y-4">
         <input
+          name="username"
           type="text"
           class="p-2 border-2 rounded-lg"
-          placeholder="Username"
+          placeholder="Email"
           v-model="username"
         />
+        <span class="text-xs text-center text-red-500">{{ emailError }}</span>
         <input
+          name="password"
           type="password"
           class="p-2 border-2 rounded-lg"
           placeholder="Password"
           v-model="password"
         />
+        <span class="text-xs text-center text-red-500">{{
+          passwordError
+        }}</span>
         <div class="flex space-x-2">
           <button
             type="submit"
