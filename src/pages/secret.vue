@@ -1,7 +1,16 @@
 <template>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum alias facere
-    nam quasi voluptatem veritatis, ducimus cum ex laboriosam aut? Quas dolore
-    est facere corporis eveniet doloribus culpa. Vel, cum?
-  </p>
+  <div
+    class="
+      flex flex-col
+      items-center
+      justify-center
+      space-y-10
+      min-h-screen-nonav
+    "
+  >
+    <h2 class="text-6xl tracking-tighter font-bold text-yellow-700 font-mono">
+      Howdy
+    </h2>
+    <img src="../assets/babyYoda.gif" alt="About" />
+  </div>
 </template>

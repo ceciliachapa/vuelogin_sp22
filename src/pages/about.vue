@@ -9,7 +9,7 @@
       min-h-screen-nonav
     "
   >
-    <h2 class="text-6xl tracking-tighter font-bold text-yellow-900 font-serif">
+    <h2 class="text-6xl tracking-tighter font-bold text-yellow-900 font-mono">
       About Page
     </h2>
     <img src="../assets/about.png" alt="About" />
